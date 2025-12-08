@@ -1,0 +1,28 @@
+document.getElementById('analyzeBtn').addEventListener('click', analyzeText);
+
+function analyzeText() {
+    const input = document.getElementById('userInput').value.toLowerCase();
+    const resultBox = document.getElementById('result');
+
+    if (input.trim() === "") {
+        resultBox.textContent = "⚠ Please enter some text to analyze.";
+        resultBox.style.color = "#FFD700";
+        return;
+    }
+
+    // Simple keyword-based detection (example)
+    const bullyingWords = [
+        "stupid", "idiot", "hate", "kill", "loser", "ugly", 
+        "dumb", "trash", "worthless", "fool", "harass"
+    ];
+
+    let detectedWords = bullyingWords.filter(word => input.includes(word));
+
+    if (detectedWords.length > 0) {
+        resultBox.textContent = 🚨 Harassment or bullying detected! Words found: ${detectedWords.join(", ")};
+        resultBox.style.color = "#ff4b5c";
+    } else {
+        resultBox.textContent = "✅ No cyberbullying or harassment detected.";
+        resultBox.style.color = "#00ff9d";
+    }
+}
